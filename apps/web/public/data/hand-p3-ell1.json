@@ -1,0 +1,152 @@
+{
+  "parameters": {
+    "p": 3,
+    "ell": 1,
+    "mu": 0.05,
+    "K": 2.0,
+    "k": 2
+  },
+  "points": [
+    {
+      "id": "w0",
+      "part": "W",
+      "coords": [
+        {
+          "re": 1.0,
+          "im": 0.0
+        },
+        {
+          "re": 0.0,
+          "im": 0.0
+        }
+      ]
+    },
+    {
+      "id": "w1",
+      "part": "W",
+      "coords": [
+        {
+          "re": -0.4999999999999998,
+          "im": 0.8660254037844387
+        },
+        {
+          "re": 0.0,
+          "im": 0.0
+        }
+      ]
+    },
+    {
+      "id": "w2",
+      "part": "W",
+      "coords": [
+        {
+          "re": 0.0,
+          "im": 0.0
+        },
+        {
+          "re": 1.0,
+          "im": 0.0
+        }
+      ]
+    },
+    {
+      "id": "z0",
+      "part": "Z",
+      "coords": [
+        {
+          "re": 0.8660254037844387,
+          "im": -0.49999999999999994
+        },
+        {
+          "re": 0.0,
+          "im": 0.0
+        }
+      ]
+    },
+    {
+      "id": "z1",
+      "part": "Z",
+      "coords": [
+        {
+          "re": -1.0,
+          "im": 0.0
+        },
+        {
+          "re": 0.0,
+          "im": 0.0
+        }
+      ]
+    },
+    {
+      "id": "z2",
+      "part": "Z",
+      "coords": [
+        {
+          "re": 0.0,
+          "im": 0.0
+        },
+        {
+          "re": 1.0,
+          "im": 0.0
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "w0",
+      "target": "w1",
+      "kind": "internal",
+      "witness": {
+        "h": 2,
+        "distance": 6.62148293433002e-16,
+        "threshold": 0.22360679774997896
+      }
+    },
+    {
+      "source": "w0",
+      "target": "z0",
+      "kind": "cross",
+      "witness": {
+        "argument": 0.5235987755982988,
+        "argument_upper": 2.0943951023931953,
+        "min_abs_im": 0.49999999999999994,
+        "im_threshold": 0.1,
+        "inner_re": 0.8660254037844387,
+        "inner_im": 0.49999999999999994
+      }
+    }
+  ],
+  "guarantees": "none; finite sample",
+  "id": "hand-p3-ell1",
+  "title": "Hand points in C^2",
+  "description": "Six explicit unit vectors in C^2. The second W-point is \u03c1 times the first, so the stored B1 witness on that pair is h = 2: the earlier point is a \u03c1^2-rotate of the later one, and the distance is zero. z0 is chosen so that \u27e8w0, z0\u27e9 = exp(i\u03c0/6), which lies in the arc [0, 2\u03c0/3] and outside the imaginary stripes for K\u03bc = 0.1. z1 = (\u22121, 0) fails both cross conditions against w0. This file is for inspection, not for density.",
+  "sampler": "hand",
+  "seed": null,
+  "z_seed": null,
+  "statistics": {
+    "vertex_count": 6,
+    "edge_count": 2,
+    "edge_density": 0.13333333333333333,
+    "internal_density_W": 0.3333333333333333,
+    "internal_density_Z": 0.0,
+    "cross_density": 0.1111111111111111,
+    "cross_edge_count": 1,
+    "internal_edge_count_W": 1,
+    "internal_edge_count_Z": 0,
+    "degree_min": 0,
+    "degree_mean": 0.6666666666666666,
+    "degree_max": 2,
+    "component_count": 4,
+    "label": "measured on this finite sample",
+    "triangle_count": 0,
+    "max_clique_size_at_most": 2,
+    "clique_search_cap": 5,
+    "independence_number": 5,
+    "p_independence_number": 6
+  },
+  "notes": [
+    "Edge rules are B1 and B2 from Section 3.1.",
+    "guarantees is intentionally empty of theorems."
+  ]
+}

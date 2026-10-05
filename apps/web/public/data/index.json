@@ -1,0 +1,32 @@
+[
+  {
+    "id": "hand-p3-ell1",
+    "title": "Hand points in C^2",
+    "file": "hand-p3-ell1.json"
+  },
+  {
+    "id": "random-k2-n12-ell1",
+    "title": "Uniform sample, k=2, n=12, \u2113=1",
+    "file": "random-k2-n12-ell1.json"
+  },
+  {
+    "id": "random-k2-n12-ell2",
+    "title": "Uniform sample, k=2, n=12, \u2113=2",
+    "file": "random-k2-n12-ell2.json"
+  },
+  {
+    "id": "random-k2-n24-ell1",
+    "title": "Uniform sample, k=2, n=24, \u2113=1",
+    "file": "random-k2-n24-ell1.json"
+  },
+  {
+    "id": "random-k3-n12-ell1",
+    "title": "Uniform sample, k=3, n=12, \u2113=1",
+    "file": "random-k3-n12-ell1.json"
+  },
+  {
+    "id": "random-k3-n24-ell2",
+    "title": "Uniform sample, k=3, n=24, \u2113=2",
+    "file": "random-k3-n24-ell2.json"
+  }
+]
