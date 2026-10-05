@@ -5,6 +5,11 @@
     "file": "hand-p3-ell1.json"
   },
   {
+    "id": "mechanism-k8-n24-ell1",
+    "title": "Inner-product cloud, k=8, \u2113=1",
+    "file": "mechanism-k8-n24-ell1.json"
+  },
+  {
     "id": "random-k2-n12-ell1",
     "title": "Uniform sample, k=2, n=12, \u2113=1",
     "file": "random-k2-n12-ell1.json"

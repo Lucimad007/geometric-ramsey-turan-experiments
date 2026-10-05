@@ -25,6 +25,7 @@ from grt.graphs.complex_be import (
     rotation_index_matches,
 )
 from grt.graphs.samples import sample_complex_sphere
+from grt.graphs.vectorized import hermitian_matrix, stack_points, stripe_and_arc
 
 
 def _e1() -> np.ndarray:
@@ -132,6 +133,17 @@ GOLDEN_PAIRS: list[tuple[str, str, str]] = [
     ("w2", "z3", "cross"),
     ("w3", "z3", "cross"),
 ]
+
+
+def test_vectorized_b2_matches_the_scalar_witness():
+    part_w = sample_complex_sphere(5, 3, seed=4)
+    part_z = sample_complex_sphere(5, 3, seed=9)
+    inners = hermitian_matrix(stack_points(part_w), stack_points(part_z))
+    stripe, arc, _minimum = stripe_and_arc(inners, p=3, ell=1, mu=0.05, k_stripe=2)
+    for i, left in enumerate(part_w):
+        for j, right in enumerate(part_z):
+            witness = cross_witness(left, right, p=3, ell=1, mu=0.05, k_stripe=2)
+            assert bool(stripe[i, j] and arc[i, j]) is (witness is not None)
 
 
 def test_rhombus_search_reports_absence_on_two_points():

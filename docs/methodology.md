@@ -13,6 +13,16 @@ Two sources are used.
 1. **Hand points.** Coordinates are written in the experiment file. They exist so that a person can check one edge and one non-edge by hand.
 2. **Seeded Gaussian sample.** For dimension `k` and seed `s`, a NumPy Generator draws `2k` independent standard normal reals for each point, reshapes them into `k` complex coordinates, and divides by the Euclidean norm. The same seed and the same `numpy` Generator algorithm reproduce the same points. This distribution is uniform on the sphere. It is not the equal-measure small-diameter partition of Lemma 2.4.
 
+## What the dimension sweep measures
+
+`data/density-sweep.json` records, for each dimension, three fractions of the cross pairs:
+
+- **arc rate**, the share whose Hermitian argument lies in `[0, 2πℓ/p]`;
+- **stripe rate**, the share that stays at least `Kμ` away from every rotated real axis;
+- **both rate**, the share that is a B2 edge. On a balanced bipartition this is the cross density.
+
+The arc rate on uniform points sits near `ℓ/p` already at modest dimension, because the argument of a nonzero inner product is roughly uniform. The stripe rate does not. Theorem 1.1 needs both, and it needs the bad set for the stripe condition to have small measure, which the paper obtains from a cap estimate when `εK` is small. The sweep includes a series with `ε = 0.2`, `K = 5` (so that estimate is vacuous) and a series with `ε = 0.05`, `K = 2`. Neither series is a fine partition of the sphere, so neither is a numerical proof of the theorem. The gap between the both-rate and `ℓ/p` is the quantity a reader of Section 3 can watch.
+
 ## Parameters in the shipped experiments
 
 The paper sends `k → ∞` first and only then lets `μ = ε / √(2k)` and `K` tend to infinity inside a hierarchy `1/k ≪ ε ≪ 1/K ≪ 1/p`. On a laptop-sized sample that hierarchy makes `√μ` so small that internal edges disappear and the imaginary-part threshold `Kμ` becomes a statement about noise.

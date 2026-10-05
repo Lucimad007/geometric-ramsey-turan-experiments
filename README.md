@@ -28,6 +28,9 @@ A short account in our own words is in [`docs/mathematics.md`](docs/mathematics.
 - Rule B2: a cross edge when `|Im(ρ^h ⟨w, z⟩)| ≥ Kμ` for every `h`, and `arg⟨w, z⟩ ∈ [0, 2πℓ/p]`.
 - Seeded uniform samples on the complex sphere (normalised Gaussians).
 - Counts on the concrete graph: densities, degrees, components, and, under explicit size caps, triangles, small cliques, and independence numbers.
+- A split of rule B2 into the arc condition and the imaginary-stripe condition, compared with the Theorem 1.1 target `ℓ/p`. On uniform samples the arc rate already sits near `ℓ/p`; the stripe rate is the part that needs the paper's small-`εK` regime. See `data/density-sweep.json` and the chart on the site.
+- An Argand diagram of the stored inner products `⟨w, z⟩` for the `k = 8` sample, which is the finite picture behind Figure 2 of the paper.
+- A check, on internal triangles of a concrete graph, of the rotation-index relation in the first sentence of Lemma 3.1.
 - A bounded search for rhombus configurations on a supplied real point set. Absence in a sample is not Theorem 2.5.
 - A viewer that loads the precomputed JSON. It does not reimplement the edge rules.
 

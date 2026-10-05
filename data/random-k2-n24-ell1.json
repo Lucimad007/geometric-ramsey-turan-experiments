@@ -2440,10 +2440,23 @@
     "triangle_count": 0,
     "clique_search_omitted": "vertex cap 40",
     "independence_omitted": "vertex cap 20",
-    "p_independence_omitted": "vertex cap 12"
+    "p_independence_omitted": "vertex cap 12",
+    "cross_pair_count": 576,
+    "stripe_rate": 0.6475694444444444,
+    "arc_rate": 0.3524305555555556,
+    "both_rate": 0.22743055555555555,
+    "target_cross_density": 0.3333333333333333,
+    "cross_gap": -0.10590277777777776,
+    "target_balanced_density": 0.16666666666666666,
+    "internal_edge_rate_W": 0.007246376811594203,
+    "internal_edge_rate_Z": 0.0036231884057971015,
+    "rotation_triangles": 0,
+    "rotation_triangles_matching_lemma": 0,
+    "reading": "both_rate is the fraction of cross pairs that satisfy B2. target_cross_density is \u2113/p from Theorem 1.1. target_balanced_density is \u2113/(2p), the graph density that theorem would give on two equal parts with negligible internal edges. A gap is a fact about this sample."
   },
   "notes": [
     "Edge rules are B1 and B2 from Section 3.1.",
+    "target_cross_density is the \u2113/p of Theorem 1.1, not a fitted constant.",
     "guarantees is intentionally empty of theorems."
   ]
 }

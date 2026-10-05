@@ -2,7 +2,9 @@
 
 import { Canvas } from "@react-three/fiber";
 import { useEffect, useMemo, useState } from "react";
+import Argand from "@/components/Argand";
 import Scene from "@/components/Scene";
+import SweepChart, { type SweepRow } from "@/components/SweepChart";
 import type { EdgeRecord, Experiment, IndexEntry } from "@/lib/types";
 
 const STAT_ROWS: { key: string; label: string }[] = [
@@ -20,6 +22,14 @@ const STAT_ROWS: { key: string; label: string }[] = [
   { key: "max_clique_size_at_most", label: "largest clique within cap" },
   { key: "independence_number", label: "independence number" },
   { key: "p_independence_number", label: "p-independence number" },
+  { key: "stripe_rate", label: "B2 stripe rate" },
+  { key: "arc_rate", label: "B2 arc rate" },
+  { key: "both_rate", label: "B2 acceptance (cross density)" },
+  { key: "target_cross_density", label: "Theorem 1.1 target ℓ/p" },
+  { key: "cross_gap", label: "acceptance minus ℓ/p" },
+  { key: "target_balanced_density", label: "balanced density ℓ/(2p)" },
+  { key: "rotation_triangles", label: "internal triangles" },
+  { key: "rotation_triangles_matching_lemma", label: "triangles matching Lemma 3.1" },
 ];
 
 export default function Explorer() {
@@ -29,6 +39,12 @@ export default function Explorer() {
   const [mode, setMode] = useState<"geometry" | "graph">("graph");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [sweep, setSweep] = useState<{ note: string; rows: SweepRow[] } | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     fetch("/data/index.json")
@@ -38,6 +54,10 @@ export default function Explorer() {
         setCurrentId(entries[0]?.id ?? "");
       })
       .catch(() => setError("Could not load /data/index.json"));
+    fetch("/data/density-sweep.json")
+      .then((response) => response.json())
+      .then((payload: { note: string; rows: SweepRow[] }) => setSweep(payload))
+      .catch(() => setSweep(null));
   }, []);
 
   useEffect(() => {
@@ -93,7 +113,7 @@ export default function Explorer() {
             </p>
           </div>
           <div className="canvas-wrap">
-            {experiment ? (
+            {mounted && experiment ? (
               <Canvas camera={{ position: [1.6, 1.2, 1.8], fov: 45 }}>
                 <Scene
                   points={experiment.points}
@@ -104,7 +124,7 @@ export default function Explorer() {
                 />
               </Canvas>
             ) : (
-              <p className="loading">{error ?? "Loading sample…"}</p>
+              <p className="loading">{error ?? (mounted ? "Loading sample…" : "Preparing the view…")}</p>
             )}
           </div>
           <ul className="legend">
@@ -165,10 +185,19 @@ export default function Explorer() {
                 incident={incident}
                 onClear={() => setSelectedId(null)}
               />
+              {selectedId && experiment.cross_cloud && experiment.arc_upper !== undefined && experiment.im_threshold !== undefined && (
+                <Argand
+                  pairs={experiment.cross_cloud}
+                  arcUpper={experiment.arc_upper}
+                  threshold={experiment.im_threshold}
+                  selectedId={selectedId}
+                />
+              )}
             </>
           )}
         </aside>
       </div>
+      {sweep && <SweepChart rows={sweep.rows} note={sweep.note} />}
     </div>
   );
 }

@@ -34,6 +34,18 @@ export type Experiment = {
   edges: EdgeRecord[];
   statistics: Statistics;
   notes: string[];
+  cross_cloud?: {
+    w: string;
+    z: string;
+    re: number;
+    im: number;
+    min_abs_im: number;
+    stripe: boolean;
+    arc: boolean;
+    edge: boolean;
+  }[];
+  arc_upper?: number;
+  im_threshold?: number;
 };
 
 export type IndexEntry = { id: string; title: string; file: string };

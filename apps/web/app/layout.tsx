@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Fraunces, Geist } from "next/font/google";
 import "./globals.css";
+import "./viewer.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif" });
-const sans = Source_Sans_3({ subsets: ["latin"], variable: "--font-sans" });
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Geometric Ramsey–Turán experiments",
@@ -13,8 +16,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${serif.variable} ${sans.variable}`}>{children}</body>
+    <html lang="en" className={cn("font-sans", geist.variable)}>
+      <body className={`${serif.variable} ${geist.variable}`}>
+        <TooltipProvider>{children}</TooltipProvider>
+      </body>
     </html>
   );
 }
